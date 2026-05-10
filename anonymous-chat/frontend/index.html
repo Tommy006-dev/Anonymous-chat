@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Ẩn Danh Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <div id="password-modal" class="modal-overlay hidden">
+            <div class="modal-content form-box">
+                <h3 id="pwd-room-name" style="margin-bottom: 15px;">Nhập mật khẩu phòng</h3>
+                <input type="password" id="room-pwd-input" placeholder="Mật khẩu...">
+                <div style="display: flex; gap: 10px;">
+                    <button id="btn-confirm-pwd" style="flex: 1;">Xác nhận</button>
+                    <button id="btn-cancel-pwd" class="btn-secondary" style="flex: 1;">Hủy</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="lobby-screen" class="screen">
+            <div class="lobby-header">
+                <h2>🕵🏻 Anonymous chatting</h2>
+                <button id="btn-show-create-room">+ Tạo phòng mới</button>
+            </div>
+
+            <div style="padding: 15px 20px 0 20px;">
+                <input type="text" id="search-room-input" placeholder="🔍 Tìm kiếm phòng theo tên hoặc ID..."
+                    style="margin-bottom: 0;">
+            </div>
+
+            <div id="create-room-form" class="hidden form-box" style="margin: 15px 20px 0 20px;">
+                <input type="text" id="new-room-name" placeholder="Tên phòng...">
+                <input type="password" id="new-room-pass" placeholder="Mật khẩu (bỏ trống nếu không cần)">
+                <button id="btn-create-room">Xác nhận tạo</button>
+                <button id="btn-cancel-create" class="btn-secondary">Hủy</button>
+            </div>
+
+            <div class="room-list" id="room-list"></div>
+        </div>
+
+        <div id="profile-screen" class="screen hidden">
+            <div class="form-box profile-box">
+                <h2>Thiết lập cá nhân</h2>
+                <p id="selected-room-name" style="color: #0084ff; margin-bottom: 15px;"></p>
+
+                <input type="text" id="username-input" placeholder="Nhập biệt danh của bạn..." required>
+
+                <div class="gender-select" style="margin-top: 10px;">
+                    <label><input type="radio" name="gender" value="Nam" checked> ♂ Nam</label>
+                    <label><input type="radio" name="gender" value="Nữ"> ♀ Nữ</label>
+                </div>
+                <p style="font-size: 0.8rem; color: #888; margin-bottom: 15px;">(Hệ thống sẽ cấp ảnh đại diện tự động
+                    theo giới tính)</p>
+
+                <button id="btn-join-room" style="width: 100%;">Vào Phòng</button>
+                <button id="btn-back-lobby" class="btn-secondary" style="width: 100%;">Quay lại</button>
+            </div>
+        </div>
+
+        <div id="chat-screen" class="screen hidden chat-layout">
+            <div class="chat-main">
+                <div class="chat-header">
+                    <div class="header-info">
+                        <h2 id="current-room-title">Tên Phòng</h2>
+                        <p id="live-count">🟢 Đang online: 1</p>
+                    </div>
+                    <button id="btn-leave-room" class="btn-danger">Rời phòng</button>
+                </div>
+
+                <div class="chat-box" id="chat-box"></div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="message-input" placeholder="Aa" autocomplete="off">
+                    <button id="send-btn">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="#0084ff">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-sidebar">
+                <h3>Thành viên</h3>
+                <ul id="member-list" class="member-list"></ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

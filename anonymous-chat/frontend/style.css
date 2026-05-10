@@ -1,0 +1,74 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+body { background-color: #e4e6eb; display: flex; justify-content: center; align-items: center; height: 100vh; }
+
+.app-container { width: 100%; max-width: 800px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; height: 85vh; overflow: hidden; position: relative; }
+.screen { width: 100%; height: 100%; display: flex; flex-direction: column; }
+.hidden { display: none !important; }
+
+/* Styles Nút bấm & Form */
+input { padding: 10px; border: 1px solid #ccc; border-radius: 8px; outline: none; margin-bottom: 10px; width: 100%; }
+button { background: #0084ff; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+button:hover { background: #006bce; }
+.btn-secondary { background: #e4e6eb; color: #050505; margin-top: 5px;}
+.btn-secondary:hover { background: #d8dadf; }
+.btn-danger { background: #fa383e; color: white; }
+.btn-danger:hover { background: #d92b2f; }
+.form-box { background: #f0f2f5; padding: 20px; border-radius: 10px; }
+
+/* --- POPUP MODAL MẬT KHẨU --- */
+.modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); backdrop-filter: blur(2px); display: flex; justify-content: center; align-items: center; z-index: 100; }
+.modal-content { background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 1px solid #ddd; width: 90%; max-width: 350px; text-align: center; }
+
+/* --- LOBBY SCREEN (Danh sách dạng list ngang) --- */
+.lobby-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+.room-list { padding: 20px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.room-card { display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #e4e6eb; padding: 15px 20px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+.room-card:hover { border-color: #0084ff; background: #f0f2f5; }
+.room-card-info h3 { font-size: 1.1rem; color: #050505; display: flex; align-items: center; gap: 8px; }
+.room-card-info p { font-size: 0.8rem; color: #65676b; margin-top: 4px; }
+.btn-join-quick { background: #e4e6eb; color: #050505; padding: 6px 12px; border-radius: 6px; font-size: 0.9rem; }
+.lock-icon { color: #fa383e; font-size: 0.9rem; }
+
+/* --- PROFILE SCREEN --- */
+.profile-box { max-width: 400px; margin: auto; text-align: center; }
+.gender-select { display: flex; justify-content: space-around; margin-bottom: 15px; }
+
+/* --- CHAT SCREEN --- */
+.chat-layout { flex-direction: row; }
+.chat-main { flex: 3; display: flex; flex-direction: column; border-right: 1px solid #eee; }
+.chat-sidebar { flex: 1; background: #fafafa; padding: 15px; overflow-y: auto; min-width: 200px; }
+.chat-header { padding: 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+.chat-box { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+.chat-input-area { display: flex; padding: 15px; border-top: 1px solid #eee; }
+.chat-input-area input { margin-bottom: 0; border-radius: 20px; background: #f0f2f5; }
+.chat-input-area button { border-radius: 50%; padding: 8px; margin-left: 10px; display: flex; align-items: center; background: none; }
+.chat-input-area button:hover { background: #f0f2f5; }
+
+/* Tin nhắn & Avatar */
+.msg-wrapper { display: flex; max-width: 80%; gap: 10px; }
+.wrapper-my { align-self: flex-end; flex-direction: row-reverse; }
+.wrapper-other { align-self: flex-start; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; background: #eee; }
+.msg-content { display: flex; flex-direction: column; }
+.wrapper-my .msg-content { align-items: flex-end; }
+.wrapper-other .msg-content { align-items: flex-start; }
+
+.sender-name { font-size: 0.75rem; color: #65676b; margin-bottom: 4px; display: flex; align-items: center; gap: 4px; }
+.bubble { padding: 10px 14px; font-size: 0.95rem; line-height: 1.4; word-wrap: break-word; }
+.my-bubble { background-color: #0084ff; color: white; border-radius: 18px 4px 18px 18px; }
+.other-bubble { background-color: #f0f2f5; color: #050505; border-radius: 4px 18px 18px 18px; }
+.timestamp { font-size: 0.65rem; color: #bec2c9; margin-top: 4px; }
+.system-message { align-self: center; background: #f0f2f5; border-radius: 10px; color: #65676b; font-size: 0.8rem; padding: 6px 12px; }
+
+/* --- HIỆU ỨNG 3 DẤU CHẤM ĐANG GÕ --- */
+.typing-bubble { display: flex; align-items: center; gap: 4px; padding: 12px 16px; background-color: #f0f2f5; border-radius: 4px 18px 18px 18px; width: fit-content; margin-top: 2px;}
+.dot { width: 6px; height: 6px; background-color: #8d949e; border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+@keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+/* Danh sách thành viên bên phải */
+.member-list { list-style: none; margin-top: 15px; }
+.member-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 0.9rem; font-weight: 500; }
+.gender-Nam { color: #0084ff; }
+.gender-Nữ { color: #e91e63; }
